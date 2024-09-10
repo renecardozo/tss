@@ -28,7 +28,7 @@ public class TableProgramsUniv {
     private TableView<BnbData> tableCumulative;
     private TableView<DataResultUniv> tableResult;
 
-    private String name = "Programas de Futbol";
+    private String name = "University";
     private Integer programsToCalculate = 0;
     private double averageProfit = 0.0;
     private Label labelResult = new Label("Average Profit:");

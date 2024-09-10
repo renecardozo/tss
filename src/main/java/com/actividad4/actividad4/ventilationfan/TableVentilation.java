@@ -25,7 +25,7 @@ public class TableVentilation {
     private TableView<DataCumulative> tableViewCumulative;
     private TableView<DataResult> tableViewResult;
 
-    private String name = "Venta de Calentadores";
+    private String name = "Ventilators";
 
     // Create a Label
     private Label labelA = new Label("a)");

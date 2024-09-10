@@ -20,7 +20,7 @@ public class BnkBloodApplication {
     private String name;
 
     public BnkBloodApplication() {
-        name = new String("BANCO DE SANGRE");
+        name = new String("Bank Blood");
         deliveryCumulative = new DeliveryCumulative();
         randomTable = new RandomTable();
         patientsCumulative = new PatientsCumulative();
@@ -34,7 +34,7 @@ public class BnkBloodApplication {
 
     public VBox createTabContent() {
         // Title
-        Label title = new Label("Table Result One");
+        Label title = new Label("");
 
         // Buttons
         Button btnGenerateRandom = new Button("Generate Random");

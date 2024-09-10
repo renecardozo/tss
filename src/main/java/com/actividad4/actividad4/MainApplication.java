@@ -25,8 +25,8 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Tabbed window with statistics Tables");
         TabPane tabPane = new TabPane();
-        Tab tab = new Tab(bnkBloodApplication.getName());
-        tab.setContent(bnkBloodApplication.createTabContent());
+        Tab tabBnkBlood = new Tab(bnkBloodApplication.getName());
+        tabBnkBlood.setContent(bnkBloodApplication.createTabContent());
 
         Tab tabColor = new Tab(ballsCumulative.getName());
         tabColor.setContent(ballsCumulative.createTabContent());
@@ -40,11 +40,12 @@ public class MainApplication extends Application {
         Tab tabVentilation = new Tab(tableVentilation.getName());
         tabVentilation.setContent(tableVentilation.createTabContent());
 
-        tabPane.getTabs().add(tab);
         tabPane.getTabs().add(tabColor);
+        tabPane.getTabs().add(tabBnkBlood);
+        tabPane.getTabs().add(tabVentilation);
         tabPane.getTabs().add(tabBnb);
         tabPane.getTabs().add(tabUniv);
-        tabPane.getTabs().add(tabVentilation);
+
 
         VBox vBox = new VBox(tabPane);
         Scene scene = new Scene(vBox, 800, 400);

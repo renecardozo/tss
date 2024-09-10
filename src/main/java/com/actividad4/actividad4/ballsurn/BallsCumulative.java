@@ -34,7 +34,7 @@ public class BallsCumulative {
         dataResult = utilsBalls.generateCumulativeFullData(false);
         tableViewResult = generateCumulativeResult();
 
-        name = "URNA DE PELOTAS";
+        name = "Urn Balls";
 
     }
 
@@ -44,7 +44,7 @@ public class BallsCumulative {
 
     public VBox createTabContent() {
         // Title
-        Label title = new Label("Table Result Two");
+        Label title = new Label("");
 
         // Buttons
         Button btnGenerateRandom = new Button("Generate Random");

@@ -27,7 +27,7 @@ public class BnbTableCumulative {
         tableRandom = generateRandomTableView();
         dataBnbResult = calculateCumulativeResult(false);
         bnbDataResultTableView = generateTableResult();
-        name = "TIEMPO DE SERVICIO";
+        name = "Bank BNB";
     }
 
     public String getName() {
@@ -35,7 +35,7 @@ public class BnbTableCumulative {
     }
     public VBox createTabContent() {
         // Title
-        Label title = new Label("Table Result Two");
+        Label title = new Label("");
         // Buttons
         Button btnGenerateRandom = new Button("Generate Random");
         Button btnCalculateCumulative = new Button("Calculate Cumulative Distribution");
