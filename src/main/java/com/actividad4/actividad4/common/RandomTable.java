@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.DoubleStringConverter;
 
 public class RandomTable {
 
@@ -32,11 +34,16 @@ public class RandomTable {
 
         // Create the "Random" column
         TableColumn<NumberRandomPair, Double> randomColumn = new TableColumn<>("Random");
-        randomColumn.setCellValueFactory(new PropertyValueFactory<>("random"));
-
+        randomColumn.setCellValueFactory(cellData -> cellData.getValue().randomProperty().asObject());
+        randomColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        randomColumn.setOnEditCommit(event -> {
+            NumberRandomPair rowData = event.getRowValue();
+            rowData.setRandom(event.getNewValue());
+        });
+        tableView.setEditable(true);
         // Add columns to the TableView
-        tableView.getColumns().addAll(numberColumn, randomColumn);
-
+        tableView.getColumns().add(numberColumn);
+        tableView.getColumns().add(randomColumn);
         // Generate data and set it to the TableView
         tableView.setItems(this.data);
         return tableView;

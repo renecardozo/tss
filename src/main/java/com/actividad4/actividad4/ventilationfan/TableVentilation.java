@@ -10,8 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.converter.DoubleStringConverter;
 
 public class TableVentilation {
     private UtilsVentilation utilsVentilation;
@@ -94,7 +96,7 @@ public class TableVentilation {
         double salesAverage = (double) totalSales / dataResult.size();
         labelA.setText(labelA.getText() + "\n: " + answerA + " veces que el inventario excedio su capacidad\n" );
         labelB.setText(labelB.getText() + "\n: " + salesAverage + "fueron las ventas promedio despues de la simulacion\n");
-        labelC.setText(labelC.getText() + "\n: " + sales + " calentadores/semana");
+        labelC.setText(labelC.getText() + "\n: " + sales + " calentadores/semana \n");
     }
 
     public void calculatedDataResult() {
@@ -129,7 +131,13 @@ public class TableVentilation {
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
 
         TableColumn<NumberRandomPair, Double> randomColumn = new TableColumn<>("Numeros Aleatorios");
-        randomColumn.setCellValueFactory(new PropertyValueFactory<>("random"));
+        randomColumn.setCellValueFactory(cellData -> cellData.getValue().randomProperty().asObject());
+        randomColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        randomColumn.setOnEditCommit(event -> {
+            NumberRandomPair rowData = event.getRowValue();
+            rowData.setRandom(event.getNewValue());
+        });
+        tableView.setEditable(true);
 
         tableView.getColumns().add(numberColumn);
         tableView.getColumns().add(randomColumn);

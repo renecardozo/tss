@@ -27,7 +27,7 @@ public class TableResultCumulative {
         this.deliveryCumulative = deliveryCumulative;
         this.demandCumulative = demandCumulative;
         this.patientsCumulative = patientsCumulative;
-        Utils.buildStackRandom();
+        Utils.buildStackRandom(Utils.getDefaultRandomNumbers());
     }
     public TableView<DataResult> generateTable() {
         // Create the TableView
@@ -126,11 +126,12 @@ public class TableResultCumulative {
     }
 
     public void calculateCumulativeDistribution() {
-        if (this.data == null) {
-            this.data = fillResultsData();
-            this.tableViewResultCumulative.setItems(this.data);
-            this.tableViewResultCumulative.refresh();
+        if (this.data != null ) {
+            this.data.clear();
         }
+        this.data = fillResultsData();
+        this.tableViewResultCumulative.setItems(this.data);
+        this.tableViewResultCumulative.refresh();
     }
 
     public void clean() {

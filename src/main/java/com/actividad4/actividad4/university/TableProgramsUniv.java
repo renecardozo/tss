@@ -13,8 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.converter.DoubleStringConverter;
 
 import java.util.Arrays;
 
@@ -134,8 +136,13 @@ public class TableProgramsUniv {
         randomDataColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
 
         TableColumn<NumberRandomPair, Double> randomColumn = new TableColumn<>("Numero Aleatorio");
-        randomColumn.setCellValueFactory(new PropertyValueFactory<>("random"));
-
+        randomColumn.setCellValueFactory(cellData -> cellData.getValue().randomProperty().asObject());
+        randomColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        randomColumn.setOnEditCommit(event -> {
+            NumberRandomPair rowData = event.getRowValue();
+            rowData.setRandom(event.getNewValue());
+        });
+        tableView.setEditable(true);
         tableView.getColumns().add(randomDataColumn);
         tableView.getColumns().add(randomColumn);
         tableView.setItems(this.dataRandom);

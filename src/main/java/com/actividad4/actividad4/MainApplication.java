@@ -25,6 +25,7 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Tabbed window with statistics Tables");
         TabPane tabPane = new TabPane();
+
         Tab tabBnkBlood = new Tab(bnkBloodApplication.getName());
         tabBnkBlood.setContent(bnkBloodApplication.createTabContent());
 
