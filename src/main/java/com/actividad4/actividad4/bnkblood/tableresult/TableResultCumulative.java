@@ -137,4 +137,12 @@ public class TableResultCumulative {
     public void clean() {
         this.tableViewResultCumulative.getItems().clear();
     }
+
+    public ObservableList<DataResult> getData() {
+        return data;
+    }
+
+    public TableView<DataResult> getTableViewResultCumulative() {
+        return tableViewResultCumulative;
+    }
 }

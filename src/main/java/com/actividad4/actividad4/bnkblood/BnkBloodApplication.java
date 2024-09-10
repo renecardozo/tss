@@ -1,9 +1,12 @@
 package com.actividad4.actividad4.bnkblood;
+import com.actividad4.actividad4.bnkblood.tableresult.DataResult;
 import com.actividad4.actividad4.common.RandomTable;
 import com.actividad4.actividad4.bnkblood.delivery.DeliveryCumulative;
 import com.actividad4.actividad4.bnkblood.demand.DemandCumulative;
 import com.actividad4.actividad4.bnkblood.patients.PatientsCumulative;
 import com.actividad4.actividad4.bnkblood.tableresult.TableResultCumulative;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -18,6 +21,8 @@ public class BnkBloodApplication {
     private DemandCumulative demandCumulative;
     private TableResultCumulative tableResultCumulative;
     private String name;
+    Label titleLabel= new Label("Conclusion:\n");
+    Label asnwerLabel = new Label("");
 
     public BnkBloodApplication() {
         name = new String("Bank Blood");
@@ -60,7 +65,7 @@ public class BnkBloodApplication {
                 deliveryCumulative.getTableViewAccumulativeDistributionTable(),
                 patientsCumulative.getTableViewAccumulativeDistributionTable(),
                 demandCumulative.getTableViewAccumulativeDistributionTable());
-        HBox result = new HBox(20, tableResultCumulative.generateTable());
+        HBox result = new HBox(20, tableResultCumulative.generateTable(), titleLabel, asnwerLabel);
         tablesBox.setPadding(new Insets(10));
 
         VBox content = new VBox(10, title, buttonBox, tablesBox, result);
@@ -91,5 +96,9 @@ public class BnkBloodApplication {
     // Method to use default random numbers and populate the table
     private void useDefaultRandomNumbers() {
         tableResultCumulative.calculateCumulativeDistribution();
+        ObservableList<DataResult> dataResult = tableResultCumulative.getData();
+        DataResult lastItem = dataResult.get(dataResult.size() - 1);
+        int pintRestLast  = lastItem.getPintsRest().get(lastItem.getPintsRest().size() - 1 );
+        asnwerLabel.setText("Al final de las 6 semanas , hay " + pintRestLast + " pintas restantes");
     }
 }

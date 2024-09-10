@@ -26,6 +26,11 @@ public class BallsCumulative {
     private ObservableList<SecuencePair> dataResult;
     private UtilsBalls utilsBalls = new UtilsBalls();
     private String name;
+    Label title = new Label("Conclusion:\n");
+    Label subTitle = new Label("De 10 Pelotas extraidas:\n");
+    Label redLabel = new Label("");
+    Label yelloLabel = new Label("");
+    Label greenLabel = new Label("");
     public BallsCumulative() {
         data = utilsBalls.generateDataForCumulativeTable(false);
         tableView = generateTableView();
@@ -45,9 +50,6 @@ public class BallsCumulative {
     }
 
     public VBox createTabContent() {
-        // Title
-        Label title = new Label("");
-
         // Buttons
         Button btnGenerateRandom = new Button("Generate Random");
         Button btnCalculateCumulative = new Button("Calculate Cumulative Distribution");
@@ -65,7 +67,7 @@ public class BallsCumulative {
         buttonBox.setAlignment(Pos.CENTER);
         buttonBox.setPadding(new Insets(10));
         HBox tablesBox = new HBox(20, randomTableView, tableView);
-        HBox result = new HBox(20, tableViewResult);
+        HBox result = new HBox(20, tableViewResult, title, subTitle, redLabel, yelloLabel, greenLabel);
         tablesBox.setPadding(new Insets(10));
         VBox content = new VBox(10, title, buttonBox, tablesBox, result);
         content.setPadding(new Insets(20));
@@ -75,7 +77,23 @@ public class BallsCumulative {
     private void calculateCumulativeResult() {
         dataResult.clear();
         dataResult = utilsBalls.generateCumulativeFullData(true);
-
+        int countRed = 0;
+        int countYellow = 0;
+        int countGreen =  0;
+        for(SecuencePair result: dataResult) {
+            if ("Rojo".equals(result.getColor())) {
+                countRed += 1;
+            }
+            if ("Amarillo".equals(result.getColor())) {
+                countYellow += 1;
+            }
+            if ("Verde".equals(result.getColor())) {
+                countGreen += 1;
+            }
+        }
+        redLabel.setText(countRed + " es Rojo");
+        yelloLabel.setText(countYellow + " es Amarillo");
+        greenLabel.setText(countGreen + " es Verde");
         tableViewResult.setItems(dataResult);
         tableViewResult.refresh();
     }

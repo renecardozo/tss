@@ -12,7 +12,7 @@ public class Utils {
     private static final Stack<Double> randomStackNumbers =  new Stack<>();
     public static double[] getDefaultRandomNumbers() {
         return new double[]{0.74, 0.85, 0.21, 0.06, 0.71, 0.31, 0.28, 0.96, 0.02, 0.72, 0.12,
-                0.67, 0.53, 0.44, 0.23, 0.16, 0.16, 0.16, 0.40, 0.83, 0.65, 0.34, 0.82};
+                0.67, 0.53, 0.44, 0.23, 0.16, 0.16, 0.40, 0.83, 0.65, 0.34, 0.82};
     }
     public static void buildStackRandom(double[] randomList) {
         if (!randomStackNumbers.isEmpty()) {
