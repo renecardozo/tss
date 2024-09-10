@@ -87,13 +87,14 @@ public class TableVentilation {
             }
             totalSales = totalSales + result.getSalesFan();
         }
-        double ventas = 0.0;
+        double sales = 0.0;
         for(DataFan result : dataFan) {
-
+            sales = sales + (result.getWeek() * result.getStatisticsData());
         }
         double salesAverage = (double) totalSales / dataResult.size();
         labelA.setText(labelA.getText() + "\n: " + answerA + " veces que el inventario excedio su capacidad\n" );
         labelB.setText(labelB.getText() + "\n: " + salesAverage + "fueron las ventas promedio despues de la simulacion\n");
+        labelC.setText(labelC.getText() + "\n: " + sales + " calentadores/semana");
     }
 
     public void calculatedDataResult() {
