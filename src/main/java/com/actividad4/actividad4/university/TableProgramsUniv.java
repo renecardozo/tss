@@ -228,14 +228,13 @@ public class TableProgramsUniv {
         dataResult.clear();
         dataResult = utilsRandom.calculateDataResultUni(programs);
         double totalProfit = 0.0;
+        tableResult.setItems(dataResult);
+        tableResult.refresh();
         for (DataResultUniv result : dataResult) {
             totalProfit += result.getProfit();  // Assuming getProfit() returns the profit as a double
         }
-        averageProfit = totalProfit / dataResult.size();
 
-        labelResult.setText("Average Profit: " + averageProfit);
-        tableResult.setItems(dataResult);
-        tableResult.refresh();
+        labelResult.setText("Average Profit: " + (totalProfit / dataResult.size()));
     }
 
 }

@@ -101,6 +101,7 @@ public class UtilsRandom {
     }
     public ObservableList<DataResultUniv> calculateDataResultUni(Integer programsPivot) {
         ObservableList<DataResultUniv> data = FXCollections.observableArrayList();
+        buildStackRandom();
         for (int i = 0; i < 10; i++) {
             Integer day = i + 1;
             if (programsPivot > 0 ) {
